@@ -1,15 +1,15 @@
-const user = "jasonhall_RaA3EC";
-const key = "cM3K6hsDgzg2HrcEoR4v";
+// const user = "jasonhall_RaA3EC";
+// const key = "cM3K6hsDgzg2HrcEoR4v";
+require('dotenv').config()
 const path = require("path");
-require("dotenv").config();
 const { config } = require("../wdio.shared.conf");
 
 //
 // ============
 // BrowserStack Credentials
 // ============
-config.user = user;
-config.key = key;
+// config.user = process.env.BROWSERSTACK_USERNAME;
+// config.key = process.env.BROWSERSTACK_ACCESS_KEY;
 (config.hostname = "hub.browserstack.com"),
   //
   // ============
@@ -66,8 +66,9 @@ config.capabilities = [
       {
         testObservability: true,
         testObservabilityOptions: {
-          user: user,
-          key: key,
+
+          user: process.env.BROWSERSTACK_USERNAME,
+          key: process.env.BROWSERSTACK_ACCESS_KEY,
           projectName: "4P MOBILE AUTOMATION",
           buildName: "Android",
           buildTag: "latest",

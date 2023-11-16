@@ -1,3 +1,4 @@
+require("dotenv").config();
 exports.config = {
   //
   // ==================
@@ -25,17 +26,9 @@ exports.config = {
       "./test/specs/split-tests/variant_1.js",
       "./test/specs/split-tests/variant_2.js",
     ],
-    control: [
-      "./test/specs/split-tests/control.js",
-    ],
-    variant1: [
-
-      "./test/specs/split-tests/variant_1.js",
- 
-    ],
-    variant2: [
-      "./test/specs/split-tests/variant_2.js",
-    ],
+    control: ["./test/specs/split-tests/control.js"],
+    variant1: ["./test/specs/split-tests/variant_1.js"],
+    variant2: ["./test/specs/split-tests/variant_2.js"],
   },
 
   //
@@ -133,6 +126,8 @@ exports.config = {
     ui: "bdd",
     timeout: 150000,
   },
+  user: process.env.BROWSERSTACK_USERNAME,
+  key: process.env.BROWSERSTACK_ACCESS_KEY,
   //
   // =====
   // Hooks

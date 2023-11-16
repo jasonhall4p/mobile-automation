@@ -23,8 +23,7 @@
     "eslint-plugin-wdio": "^7.4.2"
   },
   "scripts": {
-
-    "bs:ios": "wdio run ./config/ios/bs.conf.js ",
+    "bs:ios": "wdio run ./config/ios/bs.conf.js",
     "bs:android": "wdio run ./config/android/bs.conf.js",
     "ipad": "npm run ipad:control && npm run ipad:variant_1 && npm run ipad:variant_2",
     "iphone": "npm run iphone:control && npm run iphone:variant_1 && npm run iphone:variant_2",
@@ -32,21 +31,18 @@
     "pixel": "npm run pixel:control && npm run pixel:variant_1 && npm run pixel:variant_2",
     "ios": "npm run iphone && npm run ipad",
     "android": "npm run pixel && npm run nexus",
-    "demo":"npm run ipad:control && npm run iphone:variant_1  && npm run tablet:control && npm run pixel:variant_1",
+    "demo": "npm run ipad:control && npm run iphone:variant_1  && npm run tablet:control && npm run pixel:variant_1",
     "ipad:control": "wdio run ./config/ios/iPad_Pro_12.9inch.js --suite control",
     "ipad:variant_1": "wdio run ./config/ios/iPad_Pro_12.9inch.js --suite variant1",
     "ipad:variant_2": "wdio run ./config/ios/iPad_Pro_12.9inch.js --suite variant2",
     "iphone:control": "wdio run ./config/ios/iPhone_15_Pro.js --suite control",
     "iphone:variant_1": "wdio run ./config/ios/iPhone_15_Pro.js --suite variant1",
     "iphone:variant_2": "wdio run ./config/ios/iPhone_15_Pro.js --suite variant2",
-
     "tablet:control": "wdio run ./config/android/nexus.js --suite control",
     "tablet:variant_1": "wdio run ./config/android/nexus.js --suite variant1",
     "tablet:variant_2": "wdio run ./config/android/nexus.js --suite variant2",
-
     "pixel:control": "wdio run ./config/android/Pixel7.js --suite control",
     "pixel:variant_1": "wdio run ./config/android/Pixel7.js --suite variant1",
     "pixel:variant_2": "wdio run ./config/android/Pixel7.js --suite variant2"
- 
   }
 }
