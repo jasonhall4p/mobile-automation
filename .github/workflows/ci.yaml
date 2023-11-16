@@ -12,7 +12,7 @@ jobs:
         - name: Install
           run: npm install
         - name: Test
-          run: npx wdio run ./config/android/bs.conf.js --suite control
+          run: npx wdio run ./config/ios/bs.conf.js --suite control
         - uses: actions/upload-artifact@v1
           if: failure()
           with:
