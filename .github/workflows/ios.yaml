@@ -1,4 +1,4 @@
-name: DRIVE IOS TRAFFIC - SPLIT TEST 
+name: DRIVE IOS TRAFFIC 
 on:
   workflow_dispatch:
    # Inputs the workflow accepts.
