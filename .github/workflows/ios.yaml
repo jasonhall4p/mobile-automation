@@ -1,0 +1,32 @@
+name: CI
+on:
+  workflow_dispatch:
+   # Inputs the workflow accepts.
+    inputs:    
+      test_suite:
+        description: 'Conversion'
+        required: true
+        default: "control"
+        type: choice
+        options:
+            - control
+            - variant1
+            - variant2
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+        - name: Checkout
+          uses: actions/checkout@v4
+        - uses: actions/setup-node@v3
+          with:
+            node-version: 18
+        - name: Install
+          run: npm install
+        - name: Test
+          run: npx wdio run ./config/ios/bs.conf.js --suite   ${{ github.event.inputs.test_suite }}
+        - uses: actions/upload-artifact@v1
+          if: failure()
+          with:
+            name: logs
+            path: logs
