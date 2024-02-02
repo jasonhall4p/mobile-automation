@@ -103,7 +103,7 @@ exports.config = {
   //
   // Default request retries count
   connectionRetryCount: 3,
-  specFileRetries: 2,
+  specFileRetries: 0,
 
   // Framework you want to run your specs with.
   // The following are supported: Mocha, Jasmine, and Cucumber

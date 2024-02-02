@@ -32,6 +32,7 @@
   "scripts": {
     "chrome": "wdio run ./config/web/chrome.conf.js",
     "nexus": "wdio run ./config/android/nexus.js ",
+    "pixel": "wdio run ./config/android/Pixel7.js ",
     "ipad": "wdio run ./config/ios/iPad_Pro_12.9inch.js",
     "iphone": "wdio run ./config/ios/iPhone_15_Pro.js",
     "ios": "wdio run ./config/ios/bs.conf.js",
