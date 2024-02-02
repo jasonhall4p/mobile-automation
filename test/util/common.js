@@ -1,26 +1,25 @@
+import { browser } from "@wdio/globals";
 import axios from "axios";
-import { browser } from '@wdio/globals';
+import CheckoutPage from "../pageobjects/sales-funnels/checkout.js";
+import OneTimeOfferPage from "../pageobjects/sales-funnels/oto.js";
 import ThankYouPage from "../pageobjects/thank-you-page.js";
-import OneTimeOfferPage from "../pageobjects/oto.js";
-import CheckoutPage from "../pageobjects/checkout.js";
-import Page from "../pageobjects/page.js";
 
 class CommonLibrary {
   salesAPI_BASEURL = "http://sales.uat.4patriots.net/pat/funnels/offers/";
-  SHOPPING_CART= [];
-  REFERNCE_NUMBERS  = []
-  PID_LIST = []
+  SHOPPING_CART = [];
+  REFERNCE_NUMBERS = [];
+  PID_LIST = [];
 
   async getReferenceNumbersList() {
     await expect(browser).toHaveUrlContaining("thankyou");
 
     let referenceIDs = await ThankYouPage.referenceNumberElements;
     for (const item of referenceIDs) {
-      let input = await item.getText()
+      let input = await item.getText();
       var output = input.replace("Reference Number: #", "");
-      this.REFERNCE_NUMBERS.push(output)
+      this.REFERNCE_NUMBERS.push(output);
     }
-    return this.REFERNCE_NUMBERS
+    return this.REFERNCE_NUMBERS;
   }
 
   get viewReferenceNumbers() {
@@ -31,35 +30,35 @@ class CommonLibrary {
     return this.PID_LIST;
   }
   resetPIDList() {
-    this.PID_LIST = []
+    this.PID_LIST = [];
   }
   get viewShoppingCart() {
     return this.SHOPPING_CART;
   }
 
   addToShoppingCart(jsonObj) {
-    this.SHOPPING_CART.push(jsonObj)
-    console.log("NEW item added to shoping cart ==> ", JSON.stringify(jsonObj))
+    this.SHOPPING_CART.push(jsonObj);
+    console.log("NEW item added to shoping cart ==> ", JSON.stringify(jsonObj));
   }
 
   emptyShoppingCart() {
-    this.SHOPPING_CART = []
+    this.SHOPPING_CART = [];
   }
 
   resetReferenceNumbers() {
-    this.REFERNCE_NUMBERS = []
+    this.REFERNCE_NUMBERS = [];
   }
- 
-  async add_pid_to_list_oto(){
+
+  async add_pid_to_list_oto() {
     let funnel_data = await OneTimeOfferPage.getFunnelProducts();
     for (let index = 0; index < funnel_data.length; index++) {
-      this.PID_LIST.push(funnel_data[index].product.id)
+      this.PID_LIST.push(funnel_data[index].product.id);
     }
   }
-  async add_pid_to_list_cop(){
+  async add_pid_to_list_cop() {
     let funnel_data = await CheckoutPage.getFunnelProducts();
     for (let index = 0; index < funnel_data.length; index++) {
-      this.PID_LIST.push(funnel_data[index].product.id)
+      this.PID_LIST.push(funnel_data[index].product.id);
     }
   }
   async getSalesOrder(orderID) {
@@ -67,10 +66,8 @@ class CommonLibrary {
       console.log("SALES FUNNEL REFRENCE ID " + orderID);
 
       let data = {
-        "order_id": [
-          orderID
-        ]
-      }
+        order_id: [orderID],
+      };
       const response = await axios.post(
         "https://five9.patriot123.com/pat/orders/view",
         data,
@@ -98,29 +95,27 @@ class CommonLibrary {
   //   }
   //}
   async getFunnelData(endpoint) {
+    // https://sales.uat.4patriots.net/PAT/page/power/freeze-drying-system/4week-kit
 
-   // https://sales.uat.4patriots.net/PAT/page/power/freeze-drying-system/4week-kit
-
-    let queryString = "?version=published&splitTestFunnel="
-    let baseURL = 'https://sales.uat.4patriots.net/PAT/page/'
+    let queryString = "?version=published&splitTestFunnel=";
+    let baseURL = "https://sales.uat.4patriots.net/PAT/page/";
     try {
       console.log("GET FUNNEL DATA URL ==> ", baseURL + endpoint);
       const response = await axios.get(baseURL + endpoint);
       return JSON.parse(JSON.stringify(response.data.data));
-
     } catch (error) {
       console.error(error);
     }
   }
 
-  async getSocialProofData(pidList){
-const BASEURL = 'https://sales.uat.4patriots.net/';
-const endpoint = 'PAT/proof?'
-let querySting = '';
+  async getSocialProofData(pidList) {
+    const BASEURL = "https://sales.uat.4patriots.net/";
+    const endpoint = "PAT/proof?";
+    let querySting = "";
 
-pidList.forEach(pid => {
-  querySting += 'productIds[]='+ pid+'&';
-});
+    pidList.forEach((pid) => {
+      querySting += "productIds[]=" + pid + "&";
+    });
 
     try {
       const response = await axios.get(BASEURL + endpoint + querySting);
@@ -247,25 +242,24 @@ pidList.forEach(pid => {
       return false;
     }
 
-    return keys1.every(key => {
+    return keys1.every((key) => {
       const val1 = json1[key];
       const val2 = json2[key];
 
-      if (typeof val1 === 'object' && typeof val2 === 'object') {
+      if (typeof val1 === "object" && typeof val2 === "object") {
         return this.isJSONsEqual(val1, val2);
       }
 
       return val1 === val2;
     });
-  };
+  }
 
   async verifyOrder(ORDERID, expectValues) {
-
     let res = await this.getSalesOrder(ORDERID);
     let response = JSON.parse(res);
     console.log("API Response ==> ", response[0].products[0]);
     console.log("Expected Response ==> ", expectValues);
-    return this.isJSONsEqual(response[0].products[0], expectValues)
+    return this.isJSONsEqual(response[0].products[0], expectValues);
   }
 
   extractValuesFromArray(jsonArray, targetKey) {

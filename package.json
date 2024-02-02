@@ -2,7 +2,10 @@
   "name": "my-new-project",
   "dependencies": {
     "@wdio/cli": "^7.14.1",
+    "allure-commandline": "^2.24.1",
     "appium": "^2.2.1",
+    "chai": "^4.3.10",
+    "chai-webdriverio": "^1.0.0",
     "dotenv": "^10.0.0"
   },
   "devDependencies": {
@@ -10,6 +13,7 @@
     "@babel/core": "^7.16.0",
     "@babel/preset-env": "^7.16.4",
     "@babel/register": "^7.16.0",
+    "@wdio/allure-reporter": "^8.24.2",
     "@wdio/appium-service": "^7.14.1",
     "@wdio/browserstack-service": "^7.16.10",
     "@wdio/local-runner": "^7.14.1",
@@ -20,29 +24,20 @@
     "appium-xcuitest-driver": "^5.8.2",
     "es6-promisify": "^7.0.0",
     "eslint": "7.32.0",
-    "eslint-plugin-wdio": "^7.4.2"
+    "eslint-plugin-wdio": "^7.4.2",
+    "newman": "^6.0.0",
+    "newman-reporter-htmlextra": "^1.22.11",
+    "safaridriver": "^0.1.0"
   },
   "scripts": {
-    "bs:ios": "wdio run ./config/ios/bs.conf.js",
-    "bs:android": "wdio run ./config/android/bs.conf.js",
-    "ipad": "npm run ipad:control && npm run ipad:variant_1 && npm run ipad:variant_2",
-    "iphone": "npm run iphone:control && npm run iphone:variant_1 && npm run iphone:variant_2",
-    "nexus": "npm run tablet:control && npm run tablet:variant_1 && npm run tablet:variant_2",
-    "pixel": "npm run pixel:control && npm run pixel:variant_1 && npm run pixel:variant_2",
-    "ios": "npm run iphone && npm run ipad",
-    "android": "npm run pixel && npm run nexus",
-    "demo": "npm run ipad:control && npm run iphone:variant_1  && npm run tablet:control && npm run pixel:variant_1",
-    "ipad:control": "wdio run ./config/ios/iPad_Pro_12.9inch.js --suite control",
-    "ipad:variant_1": "wdio run ./config/ios/iPad_Pro_12.9inch.js --suite variant1",
-    "ipad:variant_2": "wdio run ./config/ios/iPad_Pro_12.9inch.js --suite variant2",
-    "iphone:control": "wdio run ./config/ios/iPhone_15_Pro.js --suite control",
-    "iphone:variant_1": "wdio run ./config/ios/iPhone_15_Pro.js --suite variant1",
-    "iphone:variant_2": "wdio run ./config/ios/iPhone_15_Pro.js --suite variant2",
-    "tablet:control": "wdio run ./config/android/nexus.js --suite control",
-    "tablet:variant_1": "wdio run ./config/android/nexus.js --suite variant1",
-    "tablet:variant_2": "wdio run ./config/android/nexus.js --suite variant2",
-    "pixel:control": "wdio run ./config/android/Pixel7.js --suite control",
-    "pixel:variant_1": "wdio run ./config/android/Pixel7.js --suite variant1",
-    "pixel:variant_2": "wdio run ./config/android/Pixel7.js --suite variant2"
+    "chrome": "wdio run ./config/web/chrome.conf.js",
+    "nexus": "wdio run ./config/android/nexus.js ",
+    "ipad": "wdio run ./config/ios/iPad_Pro_12.9inch.js",
+    "iphone": "wdio run ./config/ios/iPhone_15_Pro.js",
+    "ios": "wdio run ./config/ios/bs.conf.js",
+    "android": "wdio run ./config/android/bs.conf.js",
+    "regression": "npm run ios && npm run chrome && npm run nexus && npm run ipad && npm run iphone",
+    "postman-dev": "node ./test/postman/Simple-Grocery-Store-API/dev.js",
+    "postman-uat": "node ./test/postman/Simple-Grocery-Store-API/uat.js"
   }
 }

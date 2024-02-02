@@ -30,7 +30,7 @@ config.capabilities = [
   }
 ]
 
-config.baseUrl = "https://products.sb.4patriots.net/",
+
 
 
 

@@ -1,15 +1,15 @@
-// const user = "jasonhall_RaA3EC";
-// const key = "cM3K6hsDgzg2HrcEoR4v";
-require('dotenv').config()
+const user = "jasonhall_RaA3EC";
+const key = "cM3K6hsDgzg2HrcEoR4v";
 const path = require("path");
+require("dotenv").config();
 const { config } = require("../wdio.shared.conf");
 
 //
 // ============
 // BrowserStack Credentials
 // ============
-// config.user = process.env.BROWSERSTACK_USERNAME;
-// config.key = process.env.BROWSERSTACK_ACCESS_KEY;
+config.user = user;
+config.key = key;
 (config.hostname = "hub.browserstack.com"),
   //
   // ============
@@ -32,17 +32,17 @@ config.capabilities = [
       projectName: "4P MOBILE AUTOMATION",
     }
   },
-  {
-    browserName: 'chrome',
-    'bstack:options': {
-      deviceName: 'Samsung Galaxy Tab S8',
-      osVersion: '12.0',
-      deviceOrientation: 'portrait',
-      buildName: "Android",
-      projectName: "4P MOBILE AUTOMATION",
-    }
-  },
-  {
+  // {
+  //   browserName: 'chrome',
+  //   'bstack:options': {
+  //     deviceName: 'Samsung Galaxy Tab S8',
+  //     osVersion: '12.0',
+  //     deviceOrientation: 'portrait',
+  //     buildName: "Android",
+  //     projectName: "4P MOBILE AUTOMATION",
+  //   }
+  // },
+ {
     browserName: "Chrome",
     "bstack:options": {
       os: 'Windows',
@@ -53,8 +53,7 @@ config.capabilities = [
     },
   },
 ];
-(config.baseUrl = "https://products.sb.4patriots.net/"),
-  (config.maxInstances = 1),
+  (config.maxInstances = 3),
   //
   // Test runner services
   // Services take over a specific job you don't want to take care of. They enhance
@@ -66,9 +65,8 @@ config.capabilities = [
       {
         testObservability: true,
         testObservabilityOptions: {
-
-          user: process.env.BROWSERSTACK_USERNAME,
-          key: process.env.BROWSERSTACK_ACCESS_KEY,
+          user: user,
+          key: key,
           projectName: "4P MOBILE AUTOMATION",
           buildName: "Android",
           buildTag: "latest",

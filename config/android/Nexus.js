@@ -12,7 +12,7 @@ config.port = 4723;
 // Specs
 // ============
 config.specs = [
-  path.join(process.cwd(), './test/specs/split-tests/*.js')
+  path.join(process.cwd(), './test/specs/**/*.js')
 ];
 
 //
@@ -31,7 +31,7 @@ config.capabilities = [
   }
 ]
 
-config.baseUrl = "https://products.sb.4patriots.net/",
+
 
 //
 // Test runner services

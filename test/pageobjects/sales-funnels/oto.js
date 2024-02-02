@@ -63,6 +63,7 @@ class OneTimeOfferPage{
         results = url.split("/");
         return results[results.length - 1];
     }
+    
 
 }
 module.exports = new OneTimeOfferPage()

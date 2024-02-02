@@ -1,27 +1,27 @@
 const user = "jasonhall_RaA3EC";
 const key = "cM3K6hsDgzg2HrcEoR4v";
 const path = require("path");
+require("dotenv").config();
 const { config } = require("../wdio.shared.conf");
 
 //
 // ============
 // BrowserStack Credentials
 // ============
-
-(config.user = user),
-(config.key = key),
+config.user = user;
+config.key = key;
 (config.hostname = "hub.browserstack.com"),
   //
   // ============
   // Specs
   // ============
-  (config.specs = [path.join(process.cwd(), "./test/specs/**/*.js")]),
+  (config.specs = [path.join(process.cwd(), "./test/specs/**/*.js")]);
 
 //
 // ============
 // Capabilities
 // ============
-(config.capabilities = [
+config.capabilities = [
   {
     browserName: "safari",
     "bstack:options": {
@@ -52,9 +52,10 @@ const { config } = require("../wdio.shared.conf");
       projectName: "4P MOBILE AUTOMATION",
     },
   },
-]),
-(config.baseUrl = "https://products.sb.4patriots.net/"),
-  (config.maxInstances = 3),
+];
+// (config.baseUrl= "https://products.uat.4patriots.net/"),
+  (config.maxInstances = 1),
+
   //
   // Test runner services
   // Services take over a specific job you don't want to take care of. They enhance

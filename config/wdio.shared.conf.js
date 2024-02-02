@@ -1,4 +1,3 @@
-require("dotenv").config();
 exports.config = {
   //
   // ==================
@@ -26,9 +25,17 @@ exports.config = {
       "./test/specs/split-tests/variant_1.js",
       "./test/specs/split-tests/variant_2.js",
     ],
-    control: ["./test/specs/split-tests/control.js"],
-    variant1: ["./test/specs/split-tests/variant_1.js"],
-    variant2: ["./test/specs/split-tests/variant_2.js"],
+    control: [
+      "./test/specs/split-tests/control.js",
+    ],
+    variant1: [
+
+      "./test/specs/split-tests/variant_1.js",
+ 
+    ],
+    variant2: [
+      "./test/specs/split-tests/variant_2.js",
+    ],
   },
 
   //
@@ -47,7 +54,7 @@ exports.config = {
   // and 30 processes will get spawned. The property handles how many capabilities
   // from the same test should run tests.
   //
-  maxInstances: 10,
+  maxInstances: 1,
   //
   // If you have trouble getting all important capabilities together, check out the
   // Sauce Labs platform configurator - a great tool to configure your capabilities:
@@ -85,7 +92,7 @@ exports.config = {
   // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
   // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
   // gets prepended directly.
-  baseUrl: "",
+  baseUrl: "https://products.4patriots.com/",
   //
   // Default timeout for all waitFor* commands.
   waitforTimeout: 10000,
@@ -96,6 +103,7 @@ exports.config = {
   //
   // Default request retries count
   connectionRetryCount: 3,
+  specFileRetries: 2,
 
   // Framework you want to run your specs with.
   // The following are supported: Mocha, Jasmine, and Cucumber
@@ -126,8 +134,6 @@ exports.config = {
     ui: "bdd",
     timeout: 150000,
   },
-  user: process.env.BROWSERSTACK_USERNAME,
-  key: process.env.BROWSERSTACK_ACCESS_KEY,
   //
   // =====
   // Hooks
